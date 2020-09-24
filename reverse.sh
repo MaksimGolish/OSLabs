@@ -7,7 +7,7 @@ reverse() {
     touch $2
   fi
   ! is_writeable $2 && error "file $2 is not writeable"
-  tail -r $2 > $3
+  tail -r $1 > $2
 }
 
 interactive_reverse() {
@@ -15,8 +15,8 @@ interactive_reverse() {
   do
     printf "Enter first file: "
     read x
-    [[ -r $x ]] && break
-    if [[ -f $x ]] ; then
+    is_readable $x && break
+    if file_exists $x ; then
       interactive_invalid_arg "File $x is not readable"
     else
       interactive_invalid_arg "File $x not found"
@@ -26,11 +26,11 @@ interactive_reverse() {
   do
     printf "Enter second file: "
     read y
-    if ![[ -w $y ]] && [[ -f $y ]] ; then
+    if ! is_writeable $y && file_exists $y ; then
       interactive_invalid_arg "file $y is not writeable"
     else
       break
     fi
   done
-  tail -r $x > $y
+  reverse $x $y
 }

@@ -10,7 +10,7 @@ while :
 do
   printf "<------------------------------------------------------------------------------>"
   printf "\nAvailable functions:\n1. calc\n2. search\n3. reverse\n4. strlen\n5. log\n6. exit\n7. help\n"
-  printf "Type function number\n>>> "
+  printf "Type function\n>>> "
   read func
   case $func in
     calc )

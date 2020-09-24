@@ -28,8 +28,8 @@ is_numeric() {
 
 calculate() {
   re='^[+-]?[0-9]+$'
-  ! is_int $2 && invalid_arg "Arg 1 is not int"
-  ! is_int $3 && invalid_arg "Arg 2 is not int"
+  ! is_int $2 && invalid_arg "arg 1 is not int"
+  ! is_int $3 && invalid_arg "arg 2 is not int"
   case $1 in
     sum )
       sum $2 $3;;
