@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 source calculator.sh
+source reverse.sh
+source search.sh
+source strlen.sh
+source log.sh
 
 interactive() {
 while :
@@ -10,73 +14,44 @@ do
   read func
   case $func in
     calc )
-      printf "Choose function: \nsum\nsub\nmul\ndiv\n"
-      printf ">>> "
-      read calc_func
-    while :
-    do
-      printf "Enter x: "
-      read x
-      if is_int $x; then
-        break
-      else
-        echo "X is not int"
-      fi
-    done
-    while :
-    do
-      printf "Enter y: "
-      read y
-      if is_int $y; then
-        break
-      else
-        echo "Y is not int"
-      fi
-    done
-      calculate $calc_func $x $y
+      interactive_calculator
       ;;
-
     search )
-    while :
-    do
-      printf "Enter directory: "
-      read x
-    done
-    while :
-    do
-      printf "Enter pattern: "
-      read y
-    done
-    search $x $y
+      interactive_search
       ;;
-
     reverse )
-    while :
-    do
-      printf "Enter first file: "
-      read x
-      printf "Enter second file: "
-      read y
-      tail -r $x > $y
-    done
+      interactive_reverse
       ;;
-      
     strlen )
-      printf "Enter string: "
-      read x
-      echo ${#x}
+      interactive_strlen
       ;;
-
     log )
       log
       ;;
     exit )
-      printf "Enter exit code: "
-      read exit_code
+      while :
+      do
+        printf "Enter exit code: "
+        read exit_code
+        is_int $exit_code && break
+      done
       exit $exit_code
       ;;
     * )
-      invalid_arg "Function \"$func\" does not exist" ;;
+      interactive_invalid_arg "Function \"$func\" does not exist" ;;
   esac
+  while :
+  do
+    printf "Wanna continue? [y/N]\n>>> "
+    read decision
+    case $decision in
+      y )
+        break ;;
+      N )
+        exit 0 ;;
+      * )
+        continue ;;
+    esac
+  done
 done
 }

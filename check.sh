@@ -2,26 +2,26 @@
 
 is_numeric() {
   re='^[0-9]+$'
-  [[ $1 =~ $re ]] && return 0 || return 1
+  [[ $1 =~ $re ]]
 }
 
 is_int() {
-  re='^-?[0-9]+$'
-  [[ $1 =~ $re ]] && return 0 || return 1
+  re='^[+-]?[0-9]+$'
+  [[ $1 =~ $re ]]
 }
 
 file_exists () {
-  test -f "$1" && return 0 || return 1
+  test -f "$1"
 }
 
 dir_exists () {
-  test -d "$1" && return 0 || return 1
+  test -d "$1"
 }
 
 is_readable() {
-  test -r "$1" && return 0 || return 1
+  test -r "$1"
 }
 
 is_writeable() {
-  test -w "$1" && return 0 || return 1
+  test -w "$1" 
 }
