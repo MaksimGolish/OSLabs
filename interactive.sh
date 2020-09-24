@@ -13,22 +13,22 @@ do
   printf "Type function\n>>> "
   read func
   case $func in
-    calc )
+    calc | "1" )
       interactive_calculator
       ;;
-    search )
+    search | "2" )
       interactive_search
       ;;
-    reverse )
+    reverse | "3" )
       interactive_reverse
       ;;
-    strlen )
+    strlen | "4" )
       interactive_strlen
       ;;
-    log )
+    log | "5" )
       log
       ;;
-    exit )
+    exit | "6" )
       while :
       do
         printf "Enter exit code: "
@@ -40,9 +40,9 @@ do
     * )
       interactive_invalid_arg "Function \"$func\" does not exist" ;;
   esac
+  printf "Wanna continue? [y/N]\n>>> "
   while :
   do
-    printf "Wanna continue? [y/N]\n>>> "
     read decision
     case $decision in
       y )
@@ -50,6 +50,7 @@ do
       N )
         exit 0 ;;
       * )
+        printf ">>> "
         continue ;;
     esac
   done

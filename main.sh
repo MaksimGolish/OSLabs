@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 
-source calculator.sh
-source exceptions.sh
-source check.sh
-source search.sh
-source log.sh
-source interactive.sh
-source reverse.sh
+import () {
+  if [[ -r $1 ]] ; then
+    source $1
+  else
+    missing_file $1
+  fi
+}
+
+import calculator.sh
+import exceptions.sh
+import check.sh
+import search.sh
+import log.sh
+import interactive.sh
+import reverse.sh
 
 case $1 in
   calc )

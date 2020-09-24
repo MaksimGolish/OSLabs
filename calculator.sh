@@ -21,29 +21,23 @@ div() {
   echo $res
 }
 
-is_numeric() {
-  re='^[0-9]+$'
-  [[ "$1 =~ $re" ]] && return 0 || return 1
-}
-
 calculate() {
-  re='^[+-]?[0-9]+$'
   ! is_int $2 && invalid_arg "arg 1 is not int"
   ! is_int $3 && invalid_arg "arg 2 is not int"
   case $1 in
-    sum )
+    sum | "1" )
       sum $2 $3;;
-    sub )
+    sub | "2" )
       sub $2 $3;;
-    mul )
+    mul | "3" )
       mul $2 $3;;
-    div )
+    div | "4" )
       div $2 $3;;
   esac
 }
 
 interactive_calculator() {
-  printf "Choose function: \nsum\nsub\nmul\ndiv\n"
+  printf "Choose function: \n1. sum\n2. sub\n3. mul\n4. div\n"
   printf ">>> "
   read calc_func
   while :

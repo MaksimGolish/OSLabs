@@ -23,5 +23,5 @@ is_readable() {
 }
 
 is_writeable() {
-  test -w "$1" 
+  test -w "$1"
 }
