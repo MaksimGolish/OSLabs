@@ -37,6 +37,9 @@ do
       done
       exit $exit_code
       ;;
+    help )
+      help
+      ;;
     * )
       interactive_invalid_arg "Function \"$func\" does not exist" ;;
   esac
