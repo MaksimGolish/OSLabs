@@ -1,0 +1,3 @@
+$ exit - exits the program with the specified code (0 by default)
+example :
+	exit $(int)code?

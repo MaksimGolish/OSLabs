@@ -11,7 +11,7 @@ invalid_arg() {
 }
 
 wrong_args_amount() {
-  echo "Wrong args amount" >> /dev/stderr
+  echo "Wrong args amount: check help" >> /dev/stderr
   exit 1
 }
 

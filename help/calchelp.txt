@@ -1,0 +1,8 @@
+$ calc - simple calculator
+example:
+	calc $function $(int)x $(int)y
+functions:
+	sum
+	sub
+	mul
+	div

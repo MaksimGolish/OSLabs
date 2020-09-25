@@ -1,0 +1,3 @@
+$ reverse - overwrites the first file in the second in reverse order
+example:
+	reverse $file1 $file2

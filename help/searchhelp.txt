@@ -1,0 +1,3 @@
+$ search - scans the contents of a directory for a pattern and prints out matching lines
+example:
+	search /Lab1/ calc
