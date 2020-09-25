@@ -22,7 +22,8 @@ case $1 in
     [[ $# -ne 4 ]] && wrong_args_amount
     calculate $2 $3 $4 ;;
   search )
-    search "$2" "$3"
+    [[ $# -ne 3 ]] && wrong_args_amount
+    search $2 $3
     ;;
   reverse )
     [[ $# -ne 3 ]] && wrong_args_amount
