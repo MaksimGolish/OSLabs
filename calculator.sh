@@ -44,7 +44,7 @@ interactive_calculator() {
   do
     printf "Enter x: "
     read x
-    if is_int $x; then
+    if is_int $x ; then
       break
     else
       echo "X is not int"
@@ -54,6 +54,10 @@ interactive_calculator() {
   do
     printf "Enter y: "
     read y
+    if [[ $calc_func==$div ]] && [[ $y -eq 0 ]]; then
+      interactive_invalid_arg "division by zero"
+      continue
+    fi
     if is_int $y; then
       break
     else

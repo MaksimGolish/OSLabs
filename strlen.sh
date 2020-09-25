@@ -5,7 +5,7 @@ strlen() {
 }
 
 interactive_strlen() {
-  printf "Enter string: "
+  printf "Enter string\n>>>  "
   read x
   echo ${#x}
 }

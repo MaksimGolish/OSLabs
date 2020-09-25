@@ -2,16 +2,21 @@
 
 is_numeric() {
   re='^[0-9]+$'
-  [[ $1 =~ $re ]]
+  [[ $1 =~ $re ]] && return 0 || return 1
+}
+
+is_file() {
+  re='^((\.\./|[a-zA-Z0-9_/\-\\])*\.[a-zA-Z0-9]+)$'
+  [[ $1 =~ $re ]] && return 0 || return 1
 }
 
 is_int() {
   re='^[+-]?[0-9]+$'
-  [[ $1 =~ $re ]]
+  [[ $1 =~ $re ]] && return 0 || return 1
 }
 
 file_exists () {
-  test -f "$1"
+  test -f "$1" && return 0 || return 1
 }
 
 dir_exists () {
