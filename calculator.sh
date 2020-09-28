@@ -62,10 +62,6 @@ interactive_calculator() {
     printf "Enter y: "
     read y
     ! [[ $y -eq $y ]] 2> /dev/null && interactive_invalid_arg "not int" && continue
-    if [ "$calc_func"="div" ] && [[ $y -eq 0 ]] ; then
-      interactive_invalid_arg "division by zero"
-      continue
-    fi
     if is_int $y; then
       break
     else

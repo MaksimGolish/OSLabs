@@ -24,6 +24,6 @@ interactive_invalid_arg() {
 }
 
 missing_file (){
-  echo "Error: can't find module $1"
+  echo "Error: can't find module $1" >> /dev/stderr
   exit 1
 }

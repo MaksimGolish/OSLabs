@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 search () {
-  if [ -d "$1" ] ; then
+  if dir_exists $1 ; then
     grep -r $2 $1 2> /dev/null
   else
     error "directory $1 does not exist"
@@ -13,13 +13,12 @@ interactive_search() {
   do
     printf "Enter directory: "
     read x
-    [[ -d $x ]] && break
+    if [[ -d $x ]] ; then
+      break
+    fi
     printf "Can't find directory $x"
   done
-  while :
-  do
-    printf "Enter pattern: "
-    read y
-  done
+  printf "Enter pattern: "
+  read y
   search $x $y
 }
