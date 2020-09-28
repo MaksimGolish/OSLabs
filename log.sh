@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 log () {
-  log_file="log/X.log"
+  log_file="/var/log/anaconda/X.log"
   ! file_exists $log_file && error "File $log_file not found"
   ! is_readable $log_file && error "file $log_file is not readable"
   local warn=$(cat $log_file | awk '/\[/ && /WW/') &> /dev/null

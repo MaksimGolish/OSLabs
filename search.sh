@@ -2,6 +2,7 @@
 
 search () {
   if dir_exists $1 ; then
+    ! is_readable $1 && error "directory is not readable"
     grep -r $2 $1 2> /dev/null
   else
     error "directory $1 does not exist"
