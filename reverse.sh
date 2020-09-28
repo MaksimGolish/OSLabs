@@ -3,13 +3,9 @@
 reverse() {
   ! file_exists $1 && error "file $1 not found"
   ! is_readable $1 && error "file $1 is not readable"
-  if ! is_file $2 ; then
-    invalid_arg "$2 is not a file"
-  elif ! file_exists $2 ; then
-    touch $2
-  fi
+  ! file_exists $2 && touch $2
   ! is_writeable $2 && error "file $2 is not writeable"
-  tail -r $1 > $2
+  nl $1 | sort -nr | cut -f 2- > $2
 }
 
 interactive_reverse() {
@@ -28,7 +24,6 @@ interactive_reverse() {
   do
     printf "Enter second file: "
     read y
-    ! is_file $y && continue && interactive_invalid_arg "$y is not a file"
     if ! is_writeable $y && file_exists $y ; then
       interactive_invalid_arg "file $y is not writeable"
     else

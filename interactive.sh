@@ -50,11 +50,8 @@ do
     case $decision in
       y )
         break ;;
-      N )
-        exit 0 ;;
       * )
-        printf ">>> "
-        continue ;;
+        exit 0 ;;
     esac
   done
 done

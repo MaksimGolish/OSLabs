@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
 sum() {
-  let "res = $1+$2"
+  res=$(($1+$2))
   echo $res
 }
 
 sub() {
-  let "res = $1-$2"
+  res=$(($1-$2))
   echo $res
 }
 
 mul() {
-  let res = "$1*$2"
+  res=$(($1*$2))
   echo $res
 }
 
 div() {
   [[ $2 -eq 0 ]] && error "division by zero"
-  let "res = $1 / $2"
+  res=$(($1/$2))
   echo $res
 }
 
@@ -37,18 +37,20 @@ calculate() {
 }
 
 interactive_calculator() {
-  printf "Choose function: \n1. sum\n2. sub\n3. mul\n4. div\n"
-  printf ">>> "
-  read calc_func
+  printf "Choose function: \n1. sum\n2. sub\n3. mul\n4. div"
+  functions=(sum sub mul div)
+  while :
+  do
+    printf "\n>>> "
+    read calc_func
+    [[ " ${functions[*]} " == *" ${calc_func} "* ]] && break
+    printf "Invalid arg"
+  done
   while :
   do
     printf "Enter x: "
     read x
     ! [[ $x -eq $x ]] 2> /dev/null && interactive_invalid_arg "not int" && continue
-    if [[ $calc_func==div ]] && [[ $x -eq 0 ]] ; then
-      interactive_invalid_arg "division by zero"
-      continue
-    fi
     if is_int $x; then
       break
     else
@@ -60,7 +62,7 @@ interactive_calculator() {
     printf "Enter y: "
     read y
     ! [[ $y -eq $y ]] 2> /dev/null && interactive_invalid_arg "not int" && continue
-    if [[ $calc_func==div ]] && [[ $y -eq 0 ]] ; then
+    if [ "$calc_func"="div" ] && [[ $y -eq 0 ]] ; then
       interactive_invalid_arg "division by zero"
       continue
     fi
