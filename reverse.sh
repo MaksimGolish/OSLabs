@@ -15,7 +15,7 @@ interactive_reverse() {
     printf "Enter first file: "
     read x
     is_readable $x && break
-    if [ file_exists $x ] ; then
+    if file_exists $x ; then
       interactive_invalid_arg "File $x is not readable"
     else
       interactive_invalid_arg "File $x not found"
