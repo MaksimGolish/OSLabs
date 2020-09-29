@@ -6,6 +6,6 @@ strlen() {
 
 interactive_strlen() {
   printf "Enter string\n>>>  "
-  read x
+  IFS= read -r x
   echo ${#x}
 }
