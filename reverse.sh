@@ -5,8 +5,7 @@ reverse() {
   ! is_readable $1 && error "file $1 is not readable"
   ! file_exists $2 && touch $2
   ! is_writeable $2 && error "file $2 is not writeable"
-  rev=$(tac $1)
-  echo $rev > $2
+  [[ "$1" = "$2" ]] && tac "$1" | rev > dummy && mv dummy "$2" || tac "$1" | rev > "$2"
 }
 
 interactive_reverse() {

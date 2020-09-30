@@ -9,6 +9,6 @@ log () {
   local BLUE="\033[1;34m"
   local YELLOW='\033[1;33m'
   local NC="\033[0m"
-  echo -e "${warn//"(WW)"/"${BLUE}Warn:${NC}"}"
-  echo -e "${inf//"(II)"/"${YELLOW}Info:${NC}"}"
+  echo -e "${warn//"(WW)"/"${YELLOW}Warning:${NC}"}"
+  echo -e "${inf//"(II)"/"${BLUE}Information:${NC}"}"
 }
