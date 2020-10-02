@@ -17,9 +17,13 @@ interactive_search() {
     if [[ -d $x ]] ; then
       break
     fi
-    printf "Can't find directory $x"
+    printf "Can't find directory $x\n"
   done
-  printf "Enter pattern: "
-  read y
+  while :
+  do
+    printf "Enter pattern: "
+    read y
+    [[ ${#y} -ne 0 ]] && break
+  done
   search $x $y
 }
