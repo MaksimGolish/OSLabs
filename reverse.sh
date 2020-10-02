@@ -3,7 +3,9 @@
 reverse() {
   ! file_exists $1 && error "file $1 not found"
   ! is_readable $1 && error "file $1 is not readable"
-  ! file_exists $2 && touch $2
+  if ! file_exists $2 ; then
+    ! touch $2 2> /dev/null && error "file $2 can't be created"
+  fi
   ! is_writeable $2 && error "file $2 is not writeable"
   [[ "$1" = "$2" ]] && tac "$1" | rev > dummyFile && mv dummyFile "$2" || tac "$1" | rev > "$2"
 }
